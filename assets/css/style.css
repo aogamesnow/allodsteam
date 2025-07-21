@@ -1,0 +1,415 @@
+/* ===== Шрифты и базовые стили ===== */
+@font-face {
+    font-family: 'Allods West';
+    src: url('../fonts/allods_west.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Allods West', fantasy, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* ===== Основной фон ===== */
+body {
+    background: #382b22 url('https://allods.ru/local/templates/main/images/bg.jpg') fixed;
+    color: #f5e6d8;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(56, 43, 34, 0.85);
+    z-index: -1;
+}
+
+/* ===== Навигация ===== */
+nav {
+    background: linear-gradient(to right, #4a382d, #5a4538);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #fd9013;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav a {
+    color: #ffcc80;
+    text-decoration: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border: 1px solid transparent;
+    background: rgba(253, 144, 19, 0.2);
+}
+
+nav a:hover, nav a.active {
+    background: rgba(253, 144, 19, 0.4);
+    border-color: #fd9013;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(253, 144, 19, 0.5);
+}
+
+/* Стили для компактной кнопки в левом углу */
+.fixed-back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 90;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: rgba(253, 144, 19, 0.85);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #fd9013;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+}
+
+.back-link:hover {
+    background-color: rgba(253, 144, 19, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .fixed-back-link {
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .back-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Адаптивность для кнопки */
+@media (max-width: 768px) {
+    .fixed-back-link {
+        width: 90%;
+    }
+    
+    .back-link {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Гарантирует, что раздел builds будет видимым */
+#builds {
+    position: relative;
+    padding-top: 20px; /* Добавляет отступ сверху */
+}
+
+/* Улучшает видимость активного раздела */
+.section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ===== Основной контейнер ===== */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== Заголовки ===== */
+h1 {
+    color: #ffcc80;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #fd9013, transparent);
+}
+
+/* ===== Сетка билдов 4x11 ===== */
+.builds-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+/* ===== Стиль кнопок ===== */
+.build-btn {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(135deg, #fd9013, #fa4e03);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(250, 78, 3, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.build-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(250, 78, 3, 0.6);
+}
+
+
+.build-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.build-btn:hover::before {
+    left: 100%;
+}
+
+.build-btn .build-number {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.build-btn {
+    /* ... существующие стили кнопки ... */
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== Секции ===== */
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Главная страница ===== */
+#home {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+#home p {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    color: #f5e6d8;
+    font-size: 1.1rem;
+}
+
+/* ===== Описание игры ===== */
+.game-description {
+    background: rgba(74, 56, 45, 0.7);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 800px;
+    border-left: 4px solid #fd9013;
+}
+
+.game-description h2 {
+    color: #ffcc80;
+    margin-bottom: 1rem;
+}
+
+.game-description ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.game-description li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.game-description li::before {
+    content: '➡️';
+    position: absolute;
+    left: -1.5rem;
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 1000px) {
+    .builds-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .builds-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    nav ul {
+        gap: 0.8rem;
+    }
+    
+    nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .builds-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ===== Календарь событий ===== */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.calendar-event {
+    background: rgba(74, 56, 45, 0.7);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #fd9013;
+    transition: all 0.3s;
+}
+
+.calendar-event:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(253, 144, 19, 0.3);
+}
+
+.calendar-event h3 {
+    color: #ffcc80;
+    margin-bottom: 0.5rem;
+}
+
+.event-date {
+    color: #fd9013;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.event-description {
+    color: #f5e6d8;
+}
+
+/* Стили для изображений билдов */
+.build-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.build-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #fd9013;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.build-image:hover {
+    transform: scale(1.03);
+}
+
+.build-desc {
+    color: #f5e6d8;
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 280px;
+}
+
+@media (max-width: 768px) {
+    .builds-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .build-image {
+        max-width: 220px;
+    }
+}
