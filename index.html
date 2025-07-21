@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Мета-информация -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наследие Вечных | Сайт</title>
+
+    <style>
+        /* Подключение шрифта Allods West */
+        @font-face {
+            font-family: 'Allods West';
+            src: url('./assets/fonts/allods_west.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Основные стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Allods West', fantasy, sans-serif;
+            letter-spacing: 0.5px;
+        }
+    </style>
+    
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav>
+        <ul>
+            <li><a href="#" class="nav-link active" data-section="home">Главная</a></li>
+            <li><a href="#" class="nav-link" data-section="news">Новости</a></li>
+            <li><a href="#" class="nav-link" data-section="calendar">Календарь</a></li>
+            <li><a href="#" class="nav-link" data-section="builds">Билды</a></li>
+            <li><a href="#" class="nav-link" data-section="screenshots">Творчество</a></li>
+            <li><a href="#" class="nav-link" data-section="contacts">Контакты</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- Главная -->
+        <section id="home" class="section active">
+            <h1>Аллоды Онлайн - База знаний</h1>
+            <p>Добро пожаловать на сайт Гильдии Наследие Вечных, сервер Наследие Богов (Владыки Астрала). Нашу коллекция билдов и руководств по Аллоды Онлайн. Здесь вы найдёте сборки билдов для различных классов и стилей игры.</p>
+            <p>Отдельная благодарность игрокам, чей труд внёс значительный вклад в развитие гильдии: ВЕРКИРИЙ, Войслава, ДияМира, ЛозиФолл, Феллхаммер.</p>
+            
+            <div class="game-description">
+                <h2>Что предлагают Аллоды Онлайн</h2>
+                <p>Это условно бесплатная MMORPG с уникальной вселенной, где магия встречается с технологиями.</p>
+                <ul>
+                    <li><strong>Гибкую систему классов</strong> — в игре присутствую 11 классов</li>
+                    <li><strong>Астральные корабли</strong> — исследуйте астральные острова с друзьями</li>
+                    <li><strong>Гильдейские войны</strong> — сражайтесь против других гильдий</li>
+                    <li><strong>12 рас</strong> — от благородных Эльфов, дерзких Орков, восставших Зем и до хитрых Гибберлигов</li>
+                </ul>
+                <p>Не смогли найти ответ на свой вопрос? Пишите в телеграмм.</p>
+            </div>
+        </section>
+        
+        <!-- Новости -->
+        <section id="news" class="section">
+            <h1>Последние новости</h1>
+            <p>19.07.2025 - Подписаны все билды по классам</p>
+            <p>19.07.2025 - Изменён цвет сайта</p>
+            <p>19.07.2025 - Добавлен раздел "Творчество"</p>
+            <p>19.07.2025 - Добавлен раздел "Календарь"</p>
+            <p>19.07.2025 - Сделано первое оформление раздела "Билды"</p>
+        </section>
+        
+        <!-- Календарь -->
+        <section id="calendar" class="section">
+            <h1>Календарь событий</h1>
+            <div class="calendar-grid">
+                <div class="calendar-event">
+                    <h3>Гильдейский Чемпионский Доминион</h3>
+                    <p class="event-date">Среда 21:00</p>
+                    <p class="event-description">Группа 12 человек</p>
+                </div>
+                <div class="calendar-event">
+                    <h3>Чемпионский Доминион</h3>
+                    <p class="event-date">Воскресенье 20:00</p>
+                    <p class="event-description">Группа 6 человек</p>
+                </div>
+                <div class="calendar-event">
+                    <h3>Обсерватория, Хранители</h3>
+                    <p class="event-date">Пятника или Вторник 20:00</p>
+                    <p class="event-description">Группа 12 человек</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Билды -->
+        <section id="builds" class="section">
+            <h1>Коллекция билдов (44 варианта)</h1>
+            <p>Выберите интересующий вас билд из списка:</p>
+            
+            <div class="builds-grid">
+                <!-- Воины -->
+                <div class="build-container">
+                    <a href="warrior-pve.html" class="build-btn">
+                        <span class="build-number">Билд #1</span>
+                        Воин - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/вар.png" alt="Воин ПВЕ" class="build-image">
+                    <p class="build-desc">Танк с высокой выживаемостью в PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="warrior-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #2</span>
+                        Воин - ПВП
+                    </a>
+                    <img src="assets/images/builds/вар.png" alt="Воин ПВП" class="build-image">
+                    <p class="build-desc">Ратник, коварный удар+самоотхил</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="war-main-tank.html" class="build-btn">
+                        <span class="build-number">Билд #3</span>
+                        Воин - Мейн Танк
+                    </a>
+                    <img src="assets/images/builds/вар.png" alt="Воин Мейн Танк" class="build-image">
+                    <p class="build-desc">Основной танк для рейдов</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="war-pvp-defense.html" class="build-btn">
+                        <span class="build-number">Билд #4</span>
+                        Воин - ПВП (Аспект Защиты Двуруч)
+                    </a>
+                    <img src="assets/images/builds/вар.png" alt="Воин ПВП Защита" class="build-image">
+                    <p class="build-desc">Защитный билд для PvP</p>
+                </div>
+                
+                <!-- Храмовники -->
+                <div class="build-container">
+                    <a href="paladin-pve.html" class="build-btn">
+                        <span class="build-number">Билд #5</span>
+                        Храмовник - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/храм.png" alt="Храмовник ПВЕ" class="build-image">
+                    <p class="build-desc">Храмовник для фарма ПВЕ активностей</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="paladin-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #6</span>
+                        Храмовник - ПВП
+                    </a>
+                    <img src="assets/images/builds/храм.png" alt="Храмовник ПВП" class="build-image">
+                    <p class="build-desc">Билд для PvP сражений</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="paladin-main-tank.html" class="build-btn">
+                        <span class="build-number">Билд #7</span>
+                        Храмовник - Мейн Танк
+                    </a>
+                    <img src="assets/images/builds/храм.png" alt="Храмовник Мейн Танк" class="build-image">
+                    <p class="build-desc">Основной танк для рейдов</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="paladin-pvp-tank.html" class="build-btn">
+                        <span class="build-number">Билд #8</span>
+                        Храмовник - ПВП Танк
+                    </a>
+                    <img src="assets/images/builds/храм.png" alt="Храмовник ПВП Танк" class="build-image">
+                    <p class="build-desc">Танковый билд для PvP</p>
+                </div>
+                
+                <!-- Разведчики -->
+                <div class="build-container">
+                    <a href="scout-pve.html" class="build-btn">
+                        <span class="build-number">Билд #9</span>
+                        Разведчик - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/лук.png" alt="Разведчик ПВЕ" class="build-image">
+                    <p class="build-desc">Лукарь РДД для фарма ПВЕ активностей</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="scout-pvp-melee.html" class="build-btn">
+                        <span class="build-number">Билд #10</span>
+                        Разведчик - ПВП Милишник
+                    </a>
+                    <img src="assets/images/builds/лук.png" alt="Разведчик ПВП" class="build-image">
+                    <p class="build-desc">Ближний бой в PvP</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="scout-tank.html" class="build-btn">
+                        <span class="build-number">Билд #11</span>
+                        Разведчик - Танк
+                    </a>
+                    <img src="assets/images/builds/лук.png" alt="Разведчик Танк" class="build-image">
+                    <p class="build-desc">Танковый билд</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="scout-pvp-tank.html" class="build-btn">
+                        <span class="build-number">Билд #12</span>
+                        Разведчик - Танк ПВП
+                    </a>
+                    <img src="assets/images/builds/лук.png" alt="Разведчик Танк ПВП" class="build-image">
+                    <p class="build-desc">Танковый билд для PvP</p>
+                </div>
+                
+                <!-- Жрецы -->
+                <div class="build-container">
+                    <a href="priest-pve-ranged.html" class="build-btn">
+                        <span class="build-number">Билд #13</span>
+                        Жрец - ПВЕ (РДД)
+                    </a>
+                    <img src="assets/images/builds/жрец.png" alt="Жрец ПВЕ" class="build-image">
+                    <p class="build-desc">Дальний бой в PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="priest-pvp-melee.html" class="build-btn">
+                        <span class="build-number">Билд #14</span>
+                        Жрец - ПВП (Милишник)
+                    </a>
+                    <img src="assets/images/builds/жрец.png" alt="Жрец ПВП" class="build-image">
+                    <p class="build-desc">Ближний бой в PvP</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="priest-pve-hybrid.html" class="build-btn">
+                        <span class="build-number">Билд #15</span>
+                        Жрец - ПВЕ (Гибрид)
+                    </a>
+                    <img src="assets/images/builds/жрец.png" alt="Жрец Гибрид" class="build-image">
+                    <p class="build-desc">Гибридный билд для PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="priest-healer.html" class="build-btn">
+                        <span class="build-number">Билд #16</span>
+                        Жрец - В аспекте лечения
+                    </a>
+                    <img src="assets/images/builds/жрец.png" alt="Жрец Лечение" class="build-image">
+                    <p class="build-desc">Поддержка и лечение</p>
+                </div>
+                
+                <!-- Язычники -->
+                <div class="build-container">
+                    <a href="druid-pve.html" class="build-btn">
+                        <span class="build-number">Билд #17</span>
+                        Язычник - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/дру.png" alt="Язычник ПВЕ" class="build-image">
+                    <p class="build-desc">Базовый билд для PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="druid-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #18</span>
+                        Язычник - ПВП
+                    </a>
+                    <img src="assets/images/builds/дру.png" alt="Язычник ПВП" class="build-image">
+                    <p class="build-desc">Билд для PvP сражений</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="druid-healer.html" class="build-btn">
+                        <span class="build-number">Билд #19</span>
+                        Язычник - В аспекте лечения
+                    </a>
+                    <img src="assets/images/builds/дру.png" alt="Язычник Лечение" class="build-image">
+                    <p class="build-desc">Поддержка и лечение</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="druid-support.html" class="build-btn">
+                        <span class="build-number">Билд #20</span>
+                        Язычник - В аспекте поддержки
+                    </a>
+                    <img src="assets/images/builds/дру.png" alt="Язычник Поддержка" class="build-image">
+                    <p class="build-desc">Бусты и баффы</p>
+                </div>
+                
+                <!-- Волшебники -->
+                <div class="build-container">
+                    <a href="mage-fire.html" class="build-btn">
+                        <span class="build-number">Билд #21</span>
+                        Волшебник - ПВЕ (Огненный маг)
+                    </a>
+                    <img src="assets/images/builds/маг.png" alt="Волшебник Огонь" class="build-image">
+                    <p class="build-desc">Огненная специализация</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="mage-lightning-ice.html" class="build-btn">
+                        <span class="build-number">Билд #22</span>
+                        Волшебник - ПВЕ (Электро-холод)
+                    </a>
+                    <img src="assets/images/builds/маг.png" alt="Волшебник Электро-холод" class="build-image">
+                    <p class="build-desc">Комбинированная специализация</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="mage-pvp-1.html" class="build-btn">
+                        <span class="build-number">Билд #23</span>
+                        Волшебник - ПВП (Сборка№ 1)
+                    </a>
+                    <img src="assets/images/builds/маг.png" alt="Волшебник ПВП 1" class="build-image">
+                    <p class="build-desc">Первый вариант PvP</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="mage-pvp-2.html" class="build-btn">
+                        <span class="build-number">Билд #24</span>
+                        Волшебник - ПВП (Сборка№ 2)
+                    </a>
+                    <img src="assets/images/builds/маг.png" alt="Волшебник ПВП 2" class="build-image">
+                    <p class="build-desc">Второй вариант PvP</p>
+                </div>
+                
+                <!-- Некроманты -->
+                <div class="build-container">
+                    <a href="necromancer-pve.html" class="build-btn">
+                        <span class="build-number">Билд #25</span>
+                        Некромант - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/некр.png" alt="Некромант ПВЕ" class="build-image">
+                    <p class="build-desc">Базовый билд для PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="necromancer-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #26</span>
+                        Некромант - ПВП
+                    </a>
+                    <img src="assets/images/builds/некр.png" alt="Некромант ПВП" class="build-image">
+                    <p class="build-desc">Билд для PvP сражений</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="necromancer-healer.html" class="build-btn">
+                        <span class="build-number">Билд #27</span>
+                        Некромант - Аспект лечения
+                    </a>
+                    <img src="assets/images/builds/некр.png" alt="Некромант Лечение" class="build-image">
+                    <p class="build-desc">Поддержка и лечение</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="necromancer-support.html" class="build-btn">
+                        <span class="build-number">Билд #28</span>
+                        Некромант - Аспект поддержки
+                    </a>
+                    <img src="assets/images/builds/некр.png" alt="Некромант Поддержка" class="build-image">
+                    <p class="build-desc">Бусты и баффы</p>
+                </div>
+                
+                <!-- Мистики -->
+                <div class="build-container">
+                    <a href="mystic-pve-1.html" class="build-btn">
+                        <span class="build-number">Билд #29</span>
+                        Мистик - ПВЕ I
+                    </a>
+                    <img src="assets/images/builds/мист.png" alt="Мистик ПВЕ 1" class="build-image">
+                    <p class="build-desc">Первый вариант PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="mystic-pve-2.html" class="build-btn">
+                        <span class="build-number">Билд #30</span>
+                        Мистик - ПВЕ II
+                    </a>
+                    <img src="assets/images/builds/мист.png" alt="Мистик ПВЕ 2" class="build-image">
+                    <p class="build-desc">Второй вариант PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="mystic-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #31</span>
+                        Мистик - ПВП
+                    </a>
+                    <img src="assets/images/builds/мист.png" alt="Мистик ПВП" class="build-image">
+                    <p class="build-desc">Билд для PvP сражений</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="mystic-support.html" class="build-btn">
+                        <span class="build-number">Билд #32</span>
+                        Мистик - Аспект поддержки
+                    </a>
+                    <img src="assets/images/builds/мист.png" alt="Мистик Поддержка" class="build-image">
+                    <p class="build-desc">Бусты и баффы</p>
+                </div>
+                
+                <!-- Барды -->
+                <div class="build-container">
+                    <a href="bard-pve.html" class="build-btn">
+                        <span class="build-number">Билд #33</span>
+                        Бард - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/бард.png" alt="Бард ПВЕ" class="build-image">
+                    <p class="build-desc">Базовый билд для PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="bard-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #34</span>
+                        Бард - ПВП
+                    </a>
+                    <img src="assets/images/builds/бард.png" alt="Бард ПВП" class="build-image">
+                    <p class="build-desc">Билд для PvP сражений</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="bard-support.html" class="build-btn">
+                        <span class="build-number">Билд #35</span>
+                        Бард - Аспект поддержки
+                    </a>
+                    <img src="assets/images/builds/бард.png" alt="Бард Поддержка" class="build-image">
+                    <p class="build-desc">Бусты и баффы</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="bard-pvp-support.html" class="build-btn">
+                        <span class="build-number">Билд #36</span>
+                        Бард - Аспект поддержки ПВП
+                    </a>
+                    <img src="assets/images/builds/бард.png" alt="Бард Поддержка ПВП" class="build-image">
+                    <p class="build-desc">Поддержка в PvP</p>
+                </div>
+                
+                <!-- Инженеры -->
+                <div class="build-container">
+                    <a href="engineer-pve.html" class="build-btn">
+                        <span class="build-number">Билд #37</span>
+                        Инженер - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/инж.png" alt="Инженер ПВЕ" class="build-image">
+                    <p class="build-desc">Базовый билд для PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="engineer-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #38</span>
+                        Инженер - ПВП
+                    </a>
+                    <img src="assets/images/builds/инж.png" alt="Инженер ПВП" class="build-image">
+                    <p class="build-desc">Билд для PvP сражений</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="engineer-support.html" class="build-btn">
+                        <span class="build-number">Билд #39</span>
+                        Инженер - Аспект поддержки
+                    </a>
+                    <img src="assets/images/builds/инж.png" alt="Инженер Поддержка" class="build-image">
+                    <p class="build-desc">Бусты и баффы</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="engineer-pvp-support.html" class="build-btn">
+                        <span class="build-number">Билд #40</span>
+                        Инженер - Аспект поддержки ПВП
+                    </a>
+                    <img src="assets/images/builds/инж.png" alt="Инженер Поддержка ПВП" class="build-image">
+                    <p class="build-desc">Поддержка в PvP</p>
+                </div>
+                
+                <!-- Демонологи -->
+                <div class="build-container">
+                    <a href="demonologist-pve.html" class="build-btn">
+                        <span class="build-number">Билд #41</span>
+                        Демонолог - ПВЕ
+                    </a>
+                    <img src="assets/images/builds/демон.png" alt="Демонолог ПВЕ" class="build-image">
+                    <p class="build-desc">Базовый билд для PvE</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="demonologist-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #42</span>
+                        Демонолог - ПВП
+                    </a>
+                    <img src="assets/images/builds/демон.png" alt="Демонолог ПВП" class="build-image">
+                    <p class="build-desc">Билд для PvP сражений</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="demonologist-main-tank.html" class="build-btn">
+                        <span class="build-number">Билд #43</span>
+                        Демонолог - Мейн Танк
+                    </a>
+                    <img src="assets/images/builds/демон.png" alt="Демонолог Танк" class="build-image">
+                    <p class="build-desc">Основной танк для рейдов</p>
+                </div>
+                
+                <div class="build-container">
+                    <a href="demon-tank-pvp.html" class="build-btn">
+                        <span class="build-number">Билд #44</span>
+                        Демонолог - Танк ПВП
+                    </a>
+                    <img src="assets/images/builds/демон.png" alt="Демонолог Танк ПВП" class="build-image">
+                    <p class="build-desc">Танковый билд для PvP</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Творчество -->
+        <section id="screenshots" class="section">
+            <h1>Игровые творчество</h1>
+            <p>Здесь будут размещено творчество игровых моментов...</p>
+        </section>
+        
+        <!-- Контакты -->
+        <section id="contacts" class="section">
+            <h1>Контакты</h1>
+            <p>По всем вопросам: <a href="t.me/ALLODQ">Телеграмм</a></p>
+        </section>
+    </div>
+
+    <script>
+        // Универсальный обработчик для навигации и якорей
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчик для навигационных ссылок
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+
+            // Функция показа раздела
+            function showSection(sectionId) {
+                // Обновляем навигацию
+                document.querySelectorAll('.nav-link').forEach(el => {
+                    el.classList.remove('active');
+                });
+                document.querySelector(`.nav-link[data-section="${sectionId}"]`).classList.add('active');
+
+                // Показываем нужный раздел
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(sectionId).classList.add('active');
+
+                // Плавная прокрутка к верху
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Обработка якоря при загрузке
+            if(window.location.hash) {
+                const sectionId = window.location.hash.substring(1); // Убираем #
+                if(document.getElementById(sectionId)) {
+                    // Задержка для гарантированной загрузки DOM
+                    setTimeout(() => {
+                        showSection(sectionId);
+                        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

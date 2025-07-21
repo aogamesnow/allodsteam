@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Мета-информация -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воин - ПВЕ | Наследие Вечных</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Дополнительные стили для страницы билда -->
+    <style>
+        .build-details-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .build-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            position: relative;
+        }
+        
+        .build-header h1 {
+            color: #ffcc80;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        .build-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #fd9013, transparent);
+        }
+        
+        .build-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        
+        .build-image-container {
+            text-align: center;
+        }
+        
+        .build-image {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #fd9013;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .build-stats {
+            background: rgba(74, 56, 45, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            border-left: 4px solid #fd9013;
+        }
+        
+        .build-description {
+            background: rgba(74, 56, 45, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #fd9013;
+        }
+        
+        @media (max-width: 768px) {
+            .build-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link">Главная</a></li>
+            <li><a href="index.html#news" class="nav-link">Новости</a></li>
+            <li><a href="index.html#calendar" class="nav-link">Календарь</a></li>
+            <li><a href="index.html#builds" class="nav-link">Билды</a></li>
+            <li><a href="index.html#screenshots" class="nav-link">Творчество</a></li>
+            <li><a href="index.html#contacts" class="nav-link">Контакты</a></li>
+        </ul>
+    </nav>
+    
+    <div class="build-details-container">
+        <div class="build-header">
+            <h1>Билд #1: Воин - ПВЕ</h1>
+            <p>Танк с высокой выживаемостью в PvE</p>
+        </div>
+        
+        <div class="build-content">
+            <div class="build-image-container">
+                <img src="assets/images/frame/warior.png" alt="Рамка воина" class="build-image">
+                
+                <div class="build-stats">
+                    <h3>Характеристики билда</h3>
+                    <ul>
+                        <li><strong>Роль:</strong> Основной танк</li>
+                        <li><strong>Сложность:</strong> ★★☆☆☆</li>
+                        <li><strong>Выживаемость:</strong> ★★★★★</li>
+                        <li><strong>Урон:</strong> ★★☆☆☆</li>
+                        <li><strong>Рейтинг PvE:</strong> 9.5/10</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="build-description">
+                <h2>Подробное описание</h2>
+                <p>Этот билд ориентирован на максимальную выживаемость в PvE-контенте. Идеально подходит для танкования в рейдах и сложных подземельях.</p>
+                
+                <h3>Ключевые особенности:</h3>
+                <ul>
+                    <li>Высокая устойчивость к физическому и магическому урону</li>
+                    <li>Эффективные навыки самоисцеления</li>
+                    <li>Усиленная защита группы</li>
+                    <li>Простота в освоении</li>
+                </ul>
+                
+                <h3>Рекомендуемые характеристики:</h3>
+                <ul>
+                    <li><strong>Основная характеристика:</strong> Сила</li>
+                    <li><strong>Вторичные характеристики:</strong> Выносливость, Защита</li>
+                    <li><strong>Критический удар:</strong> Минимальный приоритет</li>
+                </ul>
+                
+                <h3>Рекомендуемая экипировка:</h3>
+                <p>Комплект "Страж Утгарда" (мифический) с акцентом на показатели защиты и здоровья. Предпочтительные характеристики на предметах:</p>
+                <ul>
+                    <li>+ Защита</li>
+                    <li>+ Здоровье</li>
+                    <li>+ Сопротивление урону</li>
+                    <li>+ Скорость восстановления</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Фиксированная кнопка "Назад" -->
+        <div class="fixed-back-link">
+            <a href="index.html#builds" class="back-link" title="Вернуться к списку билдов">
+                ← Назад
+            </a>
+        </div>
+    </div>
+</body>
+</html>
