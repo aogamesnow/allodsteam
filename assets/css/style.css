@@ -1,188 +1,13 @@
-/* ===== Шрифты и базовые стили ===== */
+/* ===== Шрифты ===== */
 @font-face {
     font-family: 'Allods West';
-    src: url('../fonts/allods_west.ttf') format('truetype');
+    src: url('./assets/fonts/allods_west.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
-        /* Подключение шрифта Allods West */
-        @font-face {
-            font-family: 'Allods West';
-            src: url('./assets/fonts/allods_west.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        /* Основные стили */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Allods West', fantasy, sans-serif;
-            letter-spacing: 0.5px;
-        }
-        
-        body {
-            background-color: #0d0c0c;
-            color: #e0e0e0;
-        }
-        
-        nav {
-            background-color: #1a1a1a;
-            padding: 1rem;
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-link {
-            color: #ffcc80;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: #fd9013;
-        }
-        
-        .container {
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .section.active {
-            display: block;
-        }
-        
-        h1, h2, h3 {
-            color: #ffcc80;
-            margin-bottom: 1rem;
-        }
-        
-        p, li {
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
-        }
-        
-        a {
-            color: #fd9013;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Стили для раздела билдов */
-        .builds-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .build-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        
-        .build-btn {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(13, 12, 12, 0.7);
-            color: #ffcc80;
-            text-align: center;
-            padding: 1rem;
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 0.3s;
-            text-decoration: none;
-        }
-        
-        .build-container:hover .build-btn {
-            opacity: 1;
-        }
-        
-        .build-number {
-            font-size: 0.9rem;
-            color: #fd9013;
-            margin-bottom: 0.5rem;
-        }
-        
-        .build-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .build-container:hover .build-image {
-            transform: scale(1.05);
-        }
-        
-        .build-desc {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(253, 144, 19, 0.8);
-            color: #0d0c0c;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-            text-align: center;
-            z-index: 1;
-        }
-        
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Календарь */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .calendar-event {
-            background-color: #1a1a1a;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #fd9013;
-        }
-        
-        .event-date {
-            color: #fd9013;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
+/* ===== Базовые стили ===== */
 * {
     margin: 0;
     padding: 0;
@@ -200,7 +25,7 @@ body {
     position: relative;
     font-size: 18px;
     -webkit-font-smoothing: antialiased;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 body::before {
@@ -256,71 +81,6 @@ nav a:hover, nav a.active {
     box-shadow: 0 0 10px rgba(253, 144, 19, 0.5);
 }
 
-/* Стили для компактной кнопки в левом углу */
-.fixed-back-link {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 90;
-}
-
-.back-link {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: rgba(253, 144, 19, 0.85);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 1px solid #fd9013;
-    transition: all 0.3s;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    font-size: 0.9rem;
-}
-
-.back-link:hover {
-    background-color: rgba(253, 144, 19, 1);
-    transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Адаптивность для мобильных */
-@media (max-width: 768px) {
-    .fixed-back-link {
-        bottom: 15px;
-        left: 15px;
-    }
-    
-    .back-link {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-}
-
-/* Адаптивность для кнопки */
-@media (max-width: 768px) {
-    .fixed-back-link {
-        width: 90%;
-    }
-    
-    .back-link {
-        width: 100%;
-        padding: 10px 15px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Гарантирует, что раздел builds будет видимым */
-#builds {
-    position: relative;
-    padding-top: 20px; /* Добавляет отступ сверху */
-}
-
-/* Улучшает видимость активного раздела */
-.section.active {
-    display: block;
-    animation: fadeIn 0.5s ease-out;
-}
-
 /* ===== Основной контейнер ===== */
 .container {
     max-width: 1200px;
@@ -328,9 +88,28 @@ nav a:hover, nav a.active {
     padding: 0 1.5rem;
 }
 
+/* ===== Секции ===== */
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* ===== Заголовки ===== */
-h1 {
+h1, h2, h3 {
     color: #ffcc80;
+    margin-bottom: 1rem;
+}
+
+h1 {
     text-align: center;
     margin-bottom: 2.5rem;
     font-size: 2.5rem;
@@ -351,91 +130,19 @@ h1::after {
     background: linear-gradient(to right, transparent, #fd9013, transparent);
 }
 
-/* ===== Сетка билдов 4x11 ===== */
-.builds-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin: 3rem 0;
+/* ===== Текст и ссылки ===== */
+p, li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
 }
 
-/* ===== Стиль кнопок ===== */
-.build-btn {
-    position: relative;
-    width: 100%;
-    height: 120px;
-    background: linear-gradient(135deg, #fd9013, #fa4e03);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(250, 78, 3, 0.4);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-}
-
-.build-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(250, 78, 3, 0.6);
-}
-
-
-.build-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    transition: 0.5s;
-}
-
-.build-btn:hover::before {
-    left: 100%;
-}
-
-.build-btn .build-number {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.build-btn {
-    /* ... существующие стили кнопки ... */
+a {
+    color: #fd9013;
     text-decoration: none;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-/* ===== Секции ===== */
-.section {
-    display: none;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.section.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+a:hover {
+    text-decoration: underline;
 }
 
 /* ===== Главная страница ===== */
@@ -461,11 +168,6 @@ h1::after {
     border-left: 4px solid #fd9013;
 }
 
-.game-description h2 {
-    color: #ffcc80;
-    margin-bottom: 1rem;
-}
-
 .game-description ul {
     margin: 1rem 0;
     padding-left: 1.5rem;
@@ -482,75 +184,14 @@ h1::after {
     left: -1.5rem;
 }
 
-/* ===== Адаптивность ===== */
-@media (max-width: 1000px) {
-    .builds-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .builds-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    nav ul {
-        gap: 0.8rem;
-    }
-    
-    nav a {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .builds-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-}
-
-/* ===== Календарь событий ===== */
-.calendar-grid {
+/* ===== Сетка билдов ===== */
+.builds-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin: 3rem 0;
 }
 
-.calendar-event {
-    background: rgba(74, 56, 45, 0.7);
-    padding: 1.5rem;
-    border-radius: 10px;
-    border-left: 4px solid #fd9013;
-    transition: all 0.3s;
-}
-
-.calendar-event:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(253, 144, 19, 0.3);
-}
-
-.calendar-event h3 {
-    color: #ffcc80;
-    margin-bottom: 0.5rem;
-}
-
-.event-date {
-    color: #fd9013;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.event-description {
-    color: #f5e6d8;
-}
-
-/* Стили для изображений билдов */
 .build-container {
     display: flex;
     flex-direction: column;
@@ -580,11 +221,158 @@ h1::after {
     max-width: 280px;
 }
 
+.build-btn {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(135deg, #fd9013, #fa4e03);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(250, 78, 3, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+.build-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(250, 78, 3, 0.6);
+}
+
+.build-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.build-btn:hover::before {
+    left: 100%;
+}
+
+.build-btn .build-number {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== Календарь событий ===== */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.calendar-event {
+    background: rgba(74, 56, 45, 0.7);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #fd9013;
+    transition: all 0.3s;
+}
+
+.calendar-event:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(253, 144, 19, 0.3);
+}
+
+.event-date {
+    color: #fd9013;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.event-description {
+    color: #f5e6d8;
+}
+
+/* ===== Кнопка "Назад" ===== */
+.fixed-back-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 90;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: rgba(253, 144, 19, 0.85);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #fd9013;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+}
+
+.back-link:hover {
+    background-color: rgba(253, 144, 19, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 1000px) {
+    .builds-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    .builds-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    nav ul {
+        gap: 0.8rem;
+    }
+    
+    nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .fixed-back-link {
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .back-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
     .builds-grid {
         grid-template-columns: 1fr;
     }
     
+    h1 {
+        font-size: 2rem;
+    }
+
     .build-image {
         max-width: 220px;
     }
