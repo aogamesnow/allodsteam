@@ -3,19 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наследие Вечных | Сайт</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Наследие Вечных | База знаний</title>
+    <style>
+        /* Шрифт Allods West */
+        @font-face {
+            font-family: 'Allods West';
+            src: url('./assets/fonts/allods_west.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Allods West', fantasy, sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        body {
+            background-color: #0d0c0c;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        /* Навигация */
+        nav {
+            background-color: #1a1a1a;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: #ffcc80;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #fd9013;
+            background-color: rgba(253, 144, 19, 0.1);
+        }
+        
+        /* Основной контейнер */
+        .container {
+            padding: 2rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Секции */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        h1, h2, h3 {
+            color: #ffcc80;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #fd9013, transparent);
+            margin: 1rem auto 0;
+        }
+        
+        p, li {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: #fd9013;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #ffcc80;
+            text-decoration: underline;
+        }
+        
+        /* Раздел руководств */
+        .guides-section {
+            margin-top: 2rem;
+        }
+        
+        /* Система фильтров */
+        .filters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: rgba(26, 26, 26, 0.7);
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        
+        .filter-group {
+            position: relative;
+            min-width: 200px;
+        }
+        
+        .filter-btn {
+            background-color: #1a1a1a;
+            color: #ffcc80;
+            border: 1px solid #fd9013;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #fd9013;
+            color: #0d0c0c;
+        }
+        
+        .filter-btn::after {
+            content: '▼';
+            font-size: 0.7rem;
+            margin-left: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .filter-btn.active::after {
+            transform: rotate(180deg);
+        }
+        
+        .filter-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #1a1a1a;
+            border: 1px solid #fd9013;
+            border-radius: 8px;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            z-index: 10;
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .filter-dropdown.show {
+            display: flex;
+        }
+        
+        .filter-option {
+            padding: 0.7rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .filter-option:hover, .filter-option.active {
+            background-color: #fd9013;
+            color: #0d0c0c;
+        }
+        
+        .reset-btn {
+            background-color: transparent;
+            color: #ffcc80;
+            border: 1px solid #ffcc80;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            align-self: center;
+        }
+        
+        .reset-btn:hover {
+            background-color: rgba(255, 204, 128, 0.1);
+        }
+        
+        /* Сетка руководств */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .guide-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: 1px solid #333;
+            background-color: #1a1a1a;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: #fd9013;
+        }
+        
+        .guide-image-container {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .guide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .guide-card:hover .guide-image {
+            transform: scale(1.05);
+        }
+        
+        .guide-class {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+        
+        .guide-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .guide-title {
+            font-size: 1.2rem;
+            color: #ffcc80;
+            margin-bottom: 0.5rem;
+            flex-grow: 1;
+        }
+        
+        .guide-number {
+            color: #fd9013;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .guide-desc {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #b0b0b0;
+        }
+        
+        .guide-role {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: rgba(253, 144, 19, 0.2);
+            color: #fd9013;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+        
+        /* Календарь */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .calendar-event {
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #fd9013;
+            transition: transform 0.3s;
+        }
+        
+        .calendar-event:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .event-date {
+            color: #fd9013;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 0.8rem;
+            }
+            
+            .filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .guides-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-   <!-- Навигация -->
+    <!-- Навигация -->
     <nav>
         <ul>
-            <li><a href="#home" class="nav-link active" data-section="home">Главная</a></li>
-            <li><a href="#news" class="nav-link" data-section="news">Новости</a></li>
-            <li><a href="#calendar" class="nav-link" data-section="calendar">Календарь</a></li>
-            <li><a href="#builds" class="nav-link" data-section="builds">Билды</a></li>
-            <li><a href="#screenshots" class="nav-link" data-section="screenshots">Творчество</a></li>
-            <li><a href="#contacts" class="nav-link" data-section="contacts">Контакты</a></li>
+            <li><a href="#" class="nav-link active" data-section="home">Главная</a></li>
+            <li><a href="#" class="nav-link" data-section="news">Новости</a></li>
+            <li><a href="#" class="nav-link" data-section="calendar">Календарь</a></li>
+            <li><a href="#" class="nav-link" data-section="guides">Руководства по сборке</a></li>
+            <li><a href="#" class="nav-link" data-section="screenshots">Творчество</a></li>
+            <li><a href="#" class="nav-link" data-section="contacts">Контакты</a></li>
         </ul>
     </nav>
     
@@ -23,7 +384,7 @@
         <!-- Главная -->
         <section id="home" class="section active">
             <h1>Аллоды Онлайн - База знаний</h1>
-            <p>Добро пожаловать на сайт Гильдии Наследие Вечных, сервер Наследие Богов (Владыки Астрала). Наша коллекция билдов и руководств по Аллоды Онлайн. Здесь вы найдёте сборки билдов для различных классов и стилей игры.</p>
+            <p>Добро пожаловать на сайт Гильдии Наследие Вечных, сервер Наследие Богов (Владыки Астрала). Здесь вы найдёте коллекцию руководств по сборкам для различных классов и стилей игры.</p>
             <p>Отдельная благодарность игрокам, чей труд внёс значительный вклад в развитие гильдии: ВЕРКИРИЙ, Войслава, ДияМира, ЛозиФолл, Феллхаммер.</p>
             
             <div class="game-description">
@@ -42,15 +403,17 @@
         <!-- Новости -->
         <section id="news" class="section">
             <h1>Последние новости</h1>
-            <p>19.07.2025 - Подписаны все билды по классам</p>
-            <p>19.07.2025 - Изменён цвет сайта</p>
-            <p>19.07.2025 - Добавлен раздел "Творчество"</p>
-            <p>19.07.2025 - Добавлен раздел "Календарь"</p>
-            <p>19.07.2025 - Сделано первое оформление раздела "Билды"</p>
-            <p>20.07.2025 - Сделана кнопка назад в билдах (якорь кинут на страницу с билдами)</p>
-            <p>20.07.2025 - Созданы все 44 страницы с билдами</p>
-            <p>20.07.2025 - Изменён цвет сайта на:#0d0c0c (темно-серый/черный), минималистичный темный дизайн</p>
-            <p>20.07.2025 - В билде Вар-ПВЕ, сделаны места для иконок под умения затрагивающие гайд</p>
+            <ul style="list-style-type: none;">
+                <li style="margin-bottom: 1rem;"><strong>19.07.2025</strong> - Подписаны все сборки по классам</li>
+                <li style="margin-bottom: 1rem;"><strong>19.07.2025</strong> - Изменён цвет сайта</li>
+                <li style="margin-bottom: 1rem;"><strong>19.07.2025</strong> - Добавлен раздел "Творчество"</li>
+                <li style="margin-bottom: 1rem;"><strong>19.07.2025</strong> - Добавлен раздел "Календарь"</li>
+                <li style="margin-bottom: 1rem;"><strong>19.07.2025</strong> - Сделано первое оформление раздела "Руководства"</li>
+                <li style="margin-bottom: 1rem;"><strong>20.07.2025</strong> - Сделана кнопка назад в руководствах</li>
+                <li style="margin-bottom: 1rem;"><strong>20.07.2025</strong> - Созданы все 44 страницы с руководствами</li>
+                <li style="margin-bottom: 1rem;"><strong>20.07.2025</strong> - Изменён цвет сайта на #0d0c0c (темно-серый/черный)</li>
+                <li style="margin-bottom: 1rem;"><strong>20.07.2025</strong> - В сборке Воин-ПВЕ добавлены места для иконок умений</li>
+            </ul>
         </section>
         
         <!-- Календарь -->
@@ -75,484 +438,833 @@
             </div>
         </section>
         
-        <!-- Билды -->
-        <section id="builds" class="section">
-                                   
-            <div class="builds-grid">
+        <!-- Руководства по сборке -->
+        <section id="guides" class="section">
+            <h1>Руководства по сборке</h1>
+            
+            <div class="filters-container">
+                <!-- Фильтр по роли -->
+                <div class="filter-group">
+                    <button class="filter-btn" id="roleFilterBtn">Роль</button>
+                    <div class="filter-dropdown" id="roleFilter">
+                        <div class="filter-option" data-filter="role" data-value="all">Все роли</div>
+                        <div class="filter-option" data-filter="role" data-value="tank">Танк</div>
+                        <div class="filter-option" data-filter="role" data-value="pve">ПВЕ</div>
+                        <div class="filter-option" data-filter="role" data-value="pvp">ПВП</div>
+                        <div class="filter-option" data-filter="role" data-value="support">Саппорт</div>
+                        <div class="filter-option" data-filter="role" data-value="healer">Целитель</div>
+                    </div>
+                </div>
+                
+                <!-- Фильтр по классу -->
+                <div class="filter-group">
+                    <button class="filter-btn" id="classFilterBtn">Класс</button>
+                    <div class="filter-dropdown" id="classFilter">
+                        <div class="filter-option" data-filter="class" data-value="all">Все классы</div>
+                        <div class="filter-option" data-filter="class" data-value="warrior">Воин</div>
+                        <div class="filter-option" data-filter="class" data-value="paladin">Храмовник</div>
+                        <div class="filter-option" data-filter="class" data-value="scout">Разведчик</div>
+                        <div class="filter-option" data-filter="class" data-value="priest">Жрец</div>
+                        <div class="filter-option" data-filter="class" data-value="druid">Язычник</div>
+                        <div class="filter-option" data-filter="class" data-value="mage">Волшебник</div>
+                        <div class="filter-option" data-filter="class" data-value="necromancer">Некромант</div>
+                        <div class="filter-option" data-filter="class" data-value="mystic">Мистик</div>
+                        <div class="filter-option" data-filter="class" data-value="bard">Бард</div>
+                        <div class="filter-option" data-filter="class" data-value="engineer">Инженер</div>
+                        <div class="filter-option" data-filter="class" data-value="demonologist">Демонолог</div>
+                    </div>
+                </div>
+                
+                <!-- Кнопка сброса -->
+                <button class="reset-btn" id="resetFiltersBtn">Сбросить фильтры</button>
+            </div>
+            
+            <div class="guides-grid">
                 <!-- Воины -->
-                <div class="build-container">
-                    <a href="warrior-pve.html" class="build-btn">
-                        <span class="build-number">Билд #1</span>
-                        Воин - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/вар.png" alt="Воин ПВЕ" class="build-image">
-                    <p class="build-desc">Танк с высокой выживаемостью в PvE</p>
+                <div class="guide-card" data-class="warrior" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/вар.png" alt="Воин ПВЕ" class="guide-image">
+                        <span class="guide-class">Воин</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #1</span>
+                        <h3 class="guide-title">Воин - ПВЕ</h3>
+                        <p class="guide-desc">Танк с высокой выживаемостью в PvE-контенте</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="warrior-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="warrior-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #2</span>
-                        Воин - ПВП
-                    </a>
-                    <img src="assets/images/builds/вар.png" alt="Воин ПВП" class="build-image">
-                    <p class="build-desc">Ратник, коварный удар+самоотхил</p>
+                <div class="guide-card" data-class="warrior" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/вар.png" alt="Воин ПВП" class="guide-image">
+                        <span class="guide-class">Воин</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #2</span>
+                        <h3 class="guide-title">Воин - ПВП</h3>
+                        <p class="guide-desc">Ратник с коварным ударом и самоисцелением</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="warrior-pvp.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="war-main-tank.html" class="build-btn">
-                        <span class="build-number">Билд #3</span>
-                        Воин - Мейн Танк
-                    </a>
-                    <img src="assets/images/builds/вар.png" alt="Воин Мейн Танк" class="build-image">
-                    <p class="build-desc">Основной танк для рейдов</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="war-pvp-defense.html" class="build-btn">
-                        <span class="build-number">Билд #4</span>
-                        Воин - ПВП (Аспект Защиты Двуруч)
-                    </a>
-                    <img src="assets/images/builds/вар.png" alt="Воин ПВП Защита" class="build-image">
-                    <p class="build-desc">Защитный билд для PvP</p>
+                <div class="guide-card" data-class="warrior" data-role="tank">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/вар.png" alt="Воин Мейн Танк" class="guide-image">
+                        <span class="guide-class">Воин</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #3</span>
+                        <h3 class="guide-title">Воин - Мейн Танк</h3>
+                        <p class="guide-desc">Основной танк для рейдов с максимальной выживаемостью</p>
+                        <span class="guide-role">Танк</span>
+                    </div>
+                    <a href="war-main-tank.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Храмовники -->
-                <div class="build-container">
-                    <a href="paladin-pve.html" class="build-btn">
-                        <span class="build-number">Билд #5</span>
-                        Храмовник - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/храм.png" alt="Храмовник ПВЕ" class="build-image">
-                    <p class="build-desc">Храмовник для фарма ПВЕ активностей</p>
+                <div class="guide-card" data-class="paladin" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/храм.png" alt="Храмовник ПВЕ" class="guide-image">
+                        <span class="guide-class">Храмовник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #4</span>
+                        <h3 class="guide-title">Храмовник - ПВЕ</h3>
+                        <p class="guide-desc">Эффективный фарм ПВЕ активностей</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="paladin-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="paladin-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #6</span>
-                        Храмовник - ПВП
-                    </a>
-                    <img src="assets/images/builds/храм.png" alt="Храмовник ПВП" class="build-image">
-                    <p class="build-desc">Билд для PvP сражений</p>
+                <div class="guide-card" data-class="paladin" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/храм.png" alt="Храмовник ПВП" class="guide-image">
+                        <span class="guide-class">Храмовник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #5</span>
+                        <h3 class="guide-title">Храмовник - ПВП</h3>
+                        <p class="guide-desc">Стойкий боец с контролем и уроном</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="paladin-pvp.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="paladin-main-tank.html" class="build-btn">
-                        <span class="build-number">Билд #7</span>
-                        Храмовник - Мейн Танк
-                    </a>
-                    <img src="assets/images/builds/храм.png" alt="Храмовник Мейн Танк" class="build-image">
-                    <p class="build-desc">Основной танк для рейдов</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="paladin-pvp-tank.html" class="build-btn">
-                        <span class="build-number">Билд #8</span>
-                        Храмовник - ПВП Танк
-                    </a>
-                    <img src="assets/images/builds/храм.png" alt="Храмовник ПВП Танк" class="build-image">
-                    <p class="build-desc">Танковый билд для PvP</p>
+                <div class="guide-card" data-class="paladin" data-role="tank">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/храм.png" alt="Храмовник Мейн Танк" class="guide-image">
+                        <span class="guide-class">Храмовник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #6</span>
+                        <h3 class="guide-title">Храмовник - Мейн Танк</h3>
+                        <p class="guide-desc">Основной танк для рейдов с божественной защитой</p>
+                        <span class="guide-role">Танк</span>
+                    </div>
+                    <a href="paladin-main-tank.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Разведчики -->
-                <div class="build-container">
-                    <a href="scout-pve.html" class="build-btn">
-                        <span class="build-number">Билд #9</span>
-                        Разведчик - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/лук.png" alt="Разведчик ПВЕ" class="build-image">
-                    <p class="build-desc">Лукарь РДД для фарма ПВЕ активностей</p>
+                <div class="guide-card" data-class="scout" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/разведчик.png" alt="Разведчик ПВЕ" class="guide-image">
+                        <span class="guide-class">Разведчик</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #7</span>
+                        <h3 class="guide-title">Разведчик - ПВЕ</h3>
+                        <p class="guide-desc">Высокий урон в PvE с мобильностью</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="scout-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="scout-pvp-melee.html" class="build-btn">
-                        <span class="build-number">Билд #10</span>
-                        Разведчик - ПВП Милишник
-                    </a>
-                    <img src="assets/images/builds/лук.png" alt="Разведчик ПВП" class="build-image">
-                    <p class="build-desc">Ближний бой в PvP</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="scout-tank.html" class="build-btn">
-                        <span class="build-number">Билд #11</span>
-                        Разведчик - Танк
-                    </a>
-                    <img src="assets/images/builds/лук.png" alt="Разведчик Танк" class="build-image">
-                    <p class="build-desc">Танковый билд</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="scout-pvp-tank.html" class="build-btn">
-                        <span class="build-number">Билд #12</span>
-                        Разведчик - Танк ПВП
-                    </a>
-                    <img src="assets/images/builds/лук.png" alt="Разведчик Танк ПВП" class="build-image">
-                    <p class="build-desc">Танковый билд для PvP</p>
+                <div class="guide-card" data-class="scout" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/разведчик.png" alt="Разведчик ПВП" class="guide-image">
+                        <span class="guide-class">Разведчик</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #8</span>
+                        <h3 class="guide-title">Разведчик - ПВП</h3>
+                        <p class="guide-desc">Контроль и урон в PvP</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="scout-pvp.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Жрецы -->
-                <div class="build-container">
-                    <a href="priest-pve-ranged.html" class="build-btn">
-                        <span class="build-number">Билд #13</span>
-                        Жрец - ПВЕ (РДД)
-                    </a>
-                    <img src="assets/images/builds/жрец.png" alt="Жрец ПВЕ" class="build-image">
-                    <p class="build-desc">Дальний бой в PvE</p>
+                <div class="guide-card" data-class="priest" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/жрец.png" alt="Жрец Целитель" class="guide-image">
+                        <span class="guide-class">Жрец</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #9</span>
+                        <h3 class="guide-title">Жрец - Целитель</h3>
+                        <p class="guide-desc">Основной хилер для рейдов</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="priest-healer.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="priest-pvp-melee.html" class="build-btn">
-                        <span class="build-number">Билд #14</span>
-                        Жрец - ПВП (Милишник)
-                    </a>
-                    <img src="assets/images/builds/жрец.png" alt="Жрец ПВП" class="build-image">
-                    <p class="build-desc">Ближний бой в PvP</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="priest-pve-hybrid.html" class="build-btn">
-                        <span class="build-number">Билд #15</span>
-                        Жрец - ПВЕ (Гибрид)
-                    </a>
-                    <img src="assets/images/builds/жрец.png" alt="Жрец Гибрид" class="build-image">
-                    <p class="build-desc">Гибридный билд для PvE</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="priest-healer.html" class="build-btn">
-                        <span class="build-number">Билд #16</span>
-                        Жрец - В аспекте лечения
-                    </a>
-                    <img src="assets/images/builds/жрец.png" alt="Жрец Лечение" class="build-image">
-                    <p class="build-desc">Поддержка и лечение</p>
+                <div class="guide-card" data-class="priest" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/жрец.png" alt="Жрец Саппорт" class="guide-image">
+                        <span class="guide-class">Жрец</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #10</span>
+                        <h3 class="guide-title">Жрец - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы бафами и контролем</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="priest-support.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Язычники -->
-                <div class="build-container">
-                    <a href="druid-pve.html" class="build-btn">
-                        <span class="build-number">Билд #17</span>
-                        Язычник - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/дру.png" alt="Язычник ПВЕ" class="build-image">
-                    <p class="build-desc">Базовый билд для PvE</p>
+                <div class="guide-card" data-class="druid" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/дру.png" alt="Язычник Целитель" class="guide-image">
+                        <span class="guide-class">Язычник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #11</span>
+                        <h3 class="guide-title">Язычник - Целитель</h3>
+                        <p class="guide-desc">Хилер с ХОТами и контролем</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="druid-healer.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="druid-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #18</span>
-                        Язычник - ПВП
-                    </a>
-                    <img src="assets/images/builds/дру.png" alt="Язычник ПВП" class="build-image">
-                    <p class="build-desc">Билд для PvP сражений</p>
+                <div class="guide-card" data-class="druid" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/дру.png" alt="Язычник ПВЕ" class="guide-image">
+                        <span class="guide-class">Язычник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #12</span>
+                        <h3 class="guide-title">Язычник - ПВЕ</h3>
+                        <p class="guide-desc">Фарм с питомцами и ДОТами</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="druid-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="druid-healer.html" class="build-btn">
-                        <span class="build-number">Билд #19</span>
-                        Язычник - В аспекте лечения
-                    </a>
-                    <img src="assets/images/builds/дру.png" alt="Язычник Лечение" class="build-image">
-                    <p class="build-desc">Поддержка и лечение</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="druid-support.html" class="build-btn">
-                        <span class="build-number">Билд #20</span>
-                        Язычник - В аспекте поддержки
-                    </a>
-                    <img src="assets/images/builds/дру.png" alt="Язычник Поддержка" class="build-image">
-                    <p class="build-desc">Бусты и баффы</p>
+                <div class="guide-card" data-class="druid" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/дру.png" alt="Язычник ПВП" class="guide-image">
+                        <span class="guide-class">Язычник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #13</span>
+                        <h3 class="guide-title">Язычник - ПВП</h3>
+                        <p class="guide-desc">Контроль и урон в PvP</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="druid-pvp.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Волшебники -->
-                <div class="build-container">
-                    <a href="mage-fire.html" class="build-btn">
-                        <span class="build-number">Билд #21</span>
-                        Волшебник - ПВЕ (Огненный маг)
-                    </a>
-                    <img src="assets/images/builds/маг.png" alt="Волшебник Огонь" class="build-image">
-                    <p class="build-desc">Огненная специализация</p>
+                <div class="guide-card" data-class="mage" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/волшебник.png" alt="Волшебник ПВЕ" class="guide-image">
+                        <span class="guide-class">Волшебник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #14</span>
+                        <h3 class="guide-title">Волшебник - ПВЕ</h3>
+                        <p class="guide-desc">Массовый АОЕ урон</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="mage-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="mage-lightning-ice.html" class="build-btn">
-                        <span class="build-number">Билд #22</span>
-                        Волшебник - ПВЕ (Электро-холод)
-                    </a>
-                    <img src="assets/images/builds/маг.png" alt="Волшебник Электро-холод" class="build-image">
-                    <p class="build-desc">Комбинированная специализация</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="mage-pvp-1.html" class="build-btn">
-                        <span class="build-number">Билд #23</span>
-                        Волшебник - ПВП (Сборка№ 1)
-                    </a>
-                    <img src="assets/images/builds/маг.png" alt="Волшебник ПВП 1" class="build-image">
-                    <p class="build-desc">Первый вариант PvP</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="mage-pvp-2.html" class="build-btn">
-                        <span class="build-number">Билд #24</span>
-                        Волшебник - ПВП (Сборка№ 2)
-                    </a>
-                    <img src="assets/images/builds/маг.png" alt="Волшебник ПВП 2" class="build-image">
-                    <p class="build-desc">Второй вариант PvP</p>
+                <div class="guide-card" data-class="mage" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/волшебник.png" alt="Волшебник ПВП" class="guide-image">
+                        <span class="guide-class">Волшебник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #15</span>
+                        <h3 class="guide-title">Волшебник - ПВП</h3>
+                        <p class="guide-desc">Контроль и взрывной урон</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="mage-pvp.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Некроманты -->
-                <div class="build-container">
-                    <a href="necromancer-pve.html" class="build-btn">
-                        <span class="build-number">Билд #25</span>
-                        Некромант - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/некр.png" alt="Некромант ПВЕ" class="build-image">
-                    <p class="build-desc">Базовый билд для PvE</p>
+                <div class="guide-card" data-class="necromancer" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/некромант.png" alt="Некромант ПВЕ" class="guide-image">
+                        <span class="guide-class">Некромант</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #16</span>
+                        <h3 class="guide-title">Некромант - ПВЕ</h3>
+                        <p class="guide-desc">Фарм с питомцами и ДОТами</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="necromancer-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="necromancer-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #26</span>
-                        Некромант - ПВП
-                    </a>
-                    <img src="assets/images/builds/некр.png" alt="Некромант ПВП" class="build-image">
-                    <p class="build-desc">Билд для PvP сражений</p>
+                <div class="guide-card" data-class="necromancer" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/некромант.png" alt="Некромант ПВП" class="guide-image">
+                        <span class="guide-class">Некромант</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #17</span>
+                        <h3 class="guide-title">Некромант - ПВП</h3>
+                        <p class="guide-desc">Контроль и урон в PvP</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="necromancer-pvp.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="necromancer-healer.html" class="build-btn">
-                        <span class="build-number">Билд #27</span>
-                        Некромант - Аспект лечения
-                    </a>
-                    <img src="assets/images/builds/некр.png" alt="Некромант Лечение" class="build-image">
-                    <p class="build-desc">Поддержка и лечение</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="necromancer-support.html" class="build-btn">
-                        <span class="build-number">Билд #28</span>
-                        Некромант - Аспект поддержки
-                    </a>
-                    <img src="assets/images/builds/некр.png" alt="Некромант Поддержка" class="build-image">
-                    <p class="build-desc">Бусты и баффы</p>
+                <div class="guide-card" data-class="necromancer" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/некромант.png" alt="Некромант Саппорт" class="guide-image">
+                        <span class="guide-class">Некромант</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #18</span>
+                        <h3 class="guide-title">Некромант - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы бафами и дебафами</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="necromancer-support.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Мистики -->
-                <div class="build-container">
-                    <a href="mystic-pve-1.html" class="build-btn">
-                        <span class="build-number">Билд #29</span>
-                        Мистик - ПВЕ I
-                    </a>
-                    <img src="assets/images/builds/мист.png" alt="Мистик ПВЕ 1" class="build-image">
-                    <p class="build-desc">Первый вариант PvE</p>
+                <div class="guide-card" data-class="mystic" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/мистик.png" alt="Мистик Целитель" class="guide-image">
+                        <span class="guide-class">Мистик</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #19</span>
+                        <h3 class="guide-title">Мистик - Целитель</h3>
+                        <p class="guide-desc">Хилер с щитами и ХОТами</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="mystic-healer.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="mystic-pve-2.html" class="build-btn">
-                        <span class="build-number">Билд #30</span>
-                        Мистик - ПВЕ II
-                    </a>
-                    <img src="assets/images/builds/мист.png" alt="Мистик ПВЕ 2" class="build-image">
-                    <p class="build-desc">Второй вариант PvE</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="mystic-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #31</span>
-                        Мистик - ПВП
-                    </a>
-                    <img src="assets/images/builds/мист.png" alt="Мистик ПВП" class="build-image">
-                    <p class="build-desc">Билд для PvP сражений</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="mystic-support.html" class="build-btn">
-                        <span class="build-number">Билд #32</span>
-                        Мистик - Аспект поддержки
-                    </a>
-                    <img src="assets/images/builds/мист.png" alt="Мистик Поддержка" class="build-image">
-                    <p class="build-desc">Бусты и баффы</p>
+                <div class="guide-card" data-class="mystic" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/мистик.png" alt="Мистик Саппорт" class="guide-image">
+                        <span class="guide-class">Мистик</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #20</span>
+                        <h3 class="guide-title">Мистик - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы щитами и бафами</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="mystic-support.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Барды -->
-                <div class="build-container">
-                    <a href="bard-pve.html" class="build-btn">
-                        <span class="build-number">Билд #33</span>
-                        Бард - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/бард.png" alt="Бард ПВЕ" class="build-image">
-                    <p class="build-desc">Базовый билд для PvE</p>
+                <div class="guide-card" data-class="bard" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/бард.png" alt="Бард Саппорт" class="guide-image">
+                        <span class="guide-class">Бард</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #21</span>
+                        <h3 class="guide-title">Бард - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы бафами и контролем</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="bard-support.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="bard-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #34</span>
-                        Бард - ПВП
-                    </a>
-                    <img src="assets/images/builds/бард.png" alt="Бард ПВП" class="build-image">
-                    <p class="build-desc">Билд для PvP сражений</p>
+                <div class="guide-card" data-class="bard" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/бард.png" alt="Бард ПВЕ" class="guide-image">
+                        <span class="guide-class">Бард</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #22</span>
+                        <h3 class="guide-title">Бард - ПВЕ</h3>
+                        <p class="guide-desc">Фарм с песнями и контролем</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="bard-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="bard-support.html" class="build-btn">
-                        <span class="build-number">Билд #35</span>
-                        Бард - Аспект поддержки
-                    </a>
-                    <img src="assets/images/builds/бард.png" alt="Бард Поддержка" class="build-image">
-                    <p class="build-desc">Бусты и баффы</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="bard-pvp-support.html" class="build-btn">
-                        <span class="build-number">Билд #36</span>
-                        Бард - Аспект поддержки ПВП
-                    </a>
-                    <img src="assets/images/builds/бард.png" alt="Бард Поддержка ПВП" class="build-image">
-                    <p class="build-desc">Поддержка в PvP</p>
+                <div class="guide-card" data-class="bard" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/бард.png" alt="Бард ПВП" class="guide-image">
+                        <span class="guide-class">Бард</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #23</span>
+                        <h3 class="guide-title">Бард - ПВП</h3>
+                        <p class="guide-desc">Контроль и поддержка в PvP</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="bard-pvp.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Инженеры -->
-                <div class="build-container">
-                    <a href="engineer-pve.html" class="build-btn">
-                        <span class="build-number">Билд #37</span>
-                        Инженер - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/инж.png" alt="Инженер ПВЕ" class="build-image">
-                    <p class="build-desc">Базовый билд для PvE</p>
+                <div class="guide-card" data-class="engineer" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/инженер.png" alt="Инженер ПВЕ" class="guide-image">
+                        <span class="guide-class">Инженер</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #24</span>
+                        <h3 class="guide-title">Инженер - ПВЕ</h3>
+                        <p class="guide-desc">Фарм с турелями и техникой</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="engineer-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="engineer-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #38</span>
-                        Инженер - ПВП
-                    </a>
-                    <img src="assets/images/builds/инж.png" alt="Инженер ПВП" class="build-image">
-                    <p class="build-desc">Билд для PvP сражений</p>
+                <div class="guide-card" data-class="engineer" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/инженер.png" alt="Инженер ПВП" class="guide-image">
+                        <span class="guide-class">Инженер</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #25</span>
+                        <h3 class="guide-title">Инженер - ПВП</h3>
+                        <p class="guide-desc">Контроль и урон в PvP</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="engineer-pvp.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="engineer-support.html" class="build-btn">
-                        <span class="build-number">Билд #39</span>
-                        Инженер - Аспект поддержки
-                    </a>
-                    <img src="assets/images/builds/инж.png" alt="Инженер Поддержка" class="build-image">
-                    <p class="build-desc">Бусты и баффы</p>
-                </div>
-                
-                <div class="build-container">
-                    <a href="engineer-pvp-support.html" class="build-btn">
-                        <span class="build-number">Билд #40</span>
-                        Инженер - Аспект поддержки ПВП
-                    </a>
-                    <img src="assets/images/builds/инж.png" alt="Инженер Поддержка ПВП" class="build-image">
-                    <p class="build-desc">Поддержка в PvP</p>
+                <div class="guide-card" data-class="engineer" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/инженер.png" alt="Инженер Саппорт" class="guide-image">
+                        <span class="guide-class">Инженер</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #26</span>
+                        <h3 class="guide-title">Инженер - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы бафами и контролем</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="engineer-sup-pvp.html" class="guide-link"></a>
                 </div>
                 
                 <!-- Демонологи -->
-                <div class="build-container">
-                    <a href="demonologist-pve.html" class="build-btn">
-                        <span class="build-number">Билд #41</span>
-                        Демонолог - ПВЕ
-                    </a>
-                    <img src="assets/images/builds/демон.png" alt="Демонолог ПВЕ" class="build-image">
-                    <p class="build-desc">Базовый билд для PvE</p>
+                <div class="guide-card" data-class="demonologist" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/демонолог.png" alt="Демонолог ПВЕ" class="guide-image">
+                        <span class="guide-class">Демонолог</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #27</span>
+                        <h3 class="guide-title">Демонолог - ПВЕ</h3>
+                        <p class="guide-desc">Фарм с демонами и ДОТами</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="demonologist-pve.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="demonologist-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #42</span>
-                        Демонолог - ПВП
-                    </a>
-                    <img src="assets/images/builds/демон.png" alt="Демонолог ПВП" class="build-image">
-                    <p class="build-desc">Билд для PvP сражений</p>
+                <div class="guide-card" data-class="demonologist" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/демонолог.png" alt="Демонолог ПВП" class="guide-image">
+                        <span class="guide-class">Демонолог</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #28</span>
+                        <h3 class="guide-title">Демонолог - ПВП</h3>
+                        <p class="guide-desc">Контроль и урон в PvP</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="demonologist-pvp.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="demonologist-main-tank.html" class="build-btn">
-                        <span class="build-number">Билд #43</span>
-                        Демонолог - Мейн Танк
-                    </a>
-                    <img src="assets/images/builds/демон.png" alt="Демонолог Танк" class="build-image">
-                    <p class="build-desc">Основной танк для рейдов</p>
+                <div class="guide-card" data-class="demonologist" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/демонолог.png" alt="Демонолог Саппорт" class="guide-image">
+                        <span class="guide-class">Демонолог</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #29</span>
+                        <h3 class="guide-title">Демонолог - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы дебафами и контролем</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="demonologist-support.html" class="guide-link"></a>
                 </div>
                 
-                <div class="build-container">
-                    <a href="demon-tank-pvp.html" class="build-btn">
-                        <span class="build-number">Билд #44</span>
-                        Демонолог - Танк ПВП
-                    </a>
-                    <img src="assets/images/builds/демон.png" alt="Демонолог Танк ПВП" class="build-image">
-                    <p class="build-desc">Танковый билд для PvP</p>
+                <!-- Дополнительные сборки -->
+                <!-- Воины -->
+                <div class="guide-card" data-class="warrior" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/вар.png" alt="Воин Саппорт" class="guide-image">
+                        <span class="guide-class">Воин</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #30</span>
+                        <h3 class="guide-title">Воин - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы бафами и контролем</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="warrior-support.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Храмовники -->
+                <div class="guide-card" data-class="paladin" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/храм.png" alt="Храмовник Целитель" class="guide-image">
+                        <span class="guide-class">Храмовник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #31</span>
+                        <h3 class="guide-title">Храмовник - Целитель</h3>
+                        <p class="guide-desc">Гибрид хил/танк для рейдов</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="paladin-healer.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Разведчики -->
+                <div class="guide-card" data-class="scout" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/разведчик.png" alt="Разведчик Саппорт" class="guide-image">
+                        <span class="guide-class">Разведчик</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #32</span>
+                        <h3 class="guide-title">Разведчик - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы бафами и контролем</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="scout-support.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Жрецы -->
+                <div class="guide-card" data-class="priest" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/жрец.png" alt="Жрец ПВЕ" class="guide-image">
+                        <span class="guide-class">Жрец</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #33</span>
+                        <h3 class="guide-title">Жрец - ПВЕ</h3>
+                        <p class="guide-desc">Фарм с уроном и контролем</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="priest-pve.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Язычники -->
+                <div class="guide-card" data-class="druid" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/язычник.png" alt="Язычник Саппорт" class="guide-image">
+                        <span class="guide-class">Язычник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #34</span>
+                        <h3 class="guide-title">Язычник - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы бафами и контролем</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="druid-support.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Волшебники -->
+                <div class="guide-card" data-class="mage" data-role="support">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/волшебник.png" alt="Волшебник Саппорт" class="guide-image">
+                        <span class="guide-class">Волшебник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #35</span>
+                        <h3 class="guide-title">Волшебник - Саппорт</h3>
+                        <p class="guide-desc">Поддержка группы контролем и бафами</p>
+                        <span class="guide-role">Саппорт</span>
+                    </div>
+                    <a href="mage-support.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Некроманты -->
+                <div class="guide-card" data-class="necromancer" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/некромант.png" alt="Некромант Целитель" class="guide-image">
+                        <span class="guide-class">Некромант</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #36</span>
+                        <h3 class="guide-title">Некромант - Целитель</h3>
+                        <p class="guide-desc">Хилер с альтернативными методами лечения</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="necromancer-healer.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Мистики -->
+                <div class="guide-card" data-class="mystic" data-role="pve">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/мистик.png" alt="Мистик ПВЕ" class="guide-image">
+                        <span class="guide-class">Мистик</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #37</span>
+                        <h3 class="guide-title">Мистик - ПВЕ</h3>
+                        <p class="guide-desc">Фарм с контролем и уроном</p>
+                        <span class="guide-role">ПВЕ</span>
+                    </div>
+                    <a href="mystic-pve.html" class="guide-link"></a>
+                </div>
+                
+                <div class="guide-card" data-class="mystic" data-role="pvp">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/мистик.png" alt="Мистик ПВП" class="guide-image">
+                        <span class="guide-class">Мистик</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #38</span>
+                        <h3 class="guide-title">Мистик - ПВП</h3>
+                        <p class="guide-desc">Контроль и поддержка в PvP</p>
+                        <span class="guide-role">ПВП</span>
+                    </div>
+                    <a href="mystic-pvp.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Барды -->
+                <div class="guide-card" data-class="bard" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/бард.png" alt="Бард Целитель" class="guide-image">
+                        <span class="guide-class">Бард</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #39</span>
+                        <h3 class="guide-title">Бард - Целитель</h3>
+                        <p class="guide-desc">Гибрид хил/саппорт</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="bard-healer.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Инженеры -->
+                <div class="guide-card" data-class="engineer" data-role="tank">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/инженер.png" alt="Инженер Танк" class="guide-image">
+                        <span class="guide-class">Инженер</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #40</span>
+                        <h3 class="guide-title">Инженер - Танк</h3>
+                        <p class="guide-desc">Танк с щитами и техникой</p>
+                        <span class="guide-role">Танк</span>
+                    </div>
+                    <a href="engineer-tank.html" class="guide-link"></a>
+                </div>
+                
+                <!-- Демонологи -->
+                <div class="guide-card" data-class="demonologist" data-role="tank">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/демонолог.png" alt="Демонолог Танк" class="guide-image">
+                        <span class="guide-class">Демонолог</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #41</span>
+                        <h3 class="guide-title">Демонолог - Танк</h3>
+                        <p class="guide-desc">Танк с демонической защитой</p>
+                        <span class="guide-role">Танк</span>
+                    </div>
+                    <a href="demonologist-tank.html" class="guide-link"></a>
+                </div>
+                
+                <div class="guide-card" data-class="demonologist" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/демонолог.png" alt="Демонолог Целитель" class="guide-image">
+                        <span class="guide-class">Демонолог</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #42</span>
+                        <h3 class="guide-title">Демонолог - Целитель</h3>
+                        <p class="guide-desc">Альтернативный хилер</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="demonologist-healer.html" class="guide-link"></a>
+                </div>
+                
+                <div class="guide-card" data-class="warrior" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/вар.png" alt="Воин Целитель" class="guide-image">
+                        <span class="guide-class">Воин</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #43</span>
+                        <h3 class="guide-title">Воин - Целитель</h3>
+                        <p class="guide-desc">Гибрид хил/танк</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="warrior-healer.html" class="guide-link"></a>
+                </div>
+                
+                <div class="guide-card" data-class="mage" data-role="healer">
+                    <div class="guide-image-container">
+                        <img src="assets/images/builds/волшебник.png" alt="Волшебник Целитель" class="guide-image">
+                        <span class="guide-class">Волшебник</span>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-number">Руководство #44</span>
+                        <h3 class="guide-title">Волшебник - Целитель</h3>
+                        <p class="guide-desc">Альтернативный хилер</p>
+                        <span class="guide-role">Целитель</span>
+                    </div>
+                    <a href="mage-healer.html" class="guide-link"></a>
                 </div>
             </div>
-        </section>
-        
-        <!-- Творчество -->
-        <section id="screenshots" class="section">
-            <h1>Игровые творчество</h1>
-            <p>Здесь будут размещено творчество игровых моментов...</p>
-        </section>
-        
-        <!-- Контакты -->
-        <section id="contacts" class="section">
-            <h1>Контакты</h1>
-            <p>По всем вопросам: <a href="t.me/ALLODQ">Телеграмм</a></p>
         </section>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Обработчик для навигационных ссылок
+            // Навигация
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const sectionId = this.getAttribute('data-section');
                     showSection(sectionId);
-                    
-                    // Обновляем URL без перезагрузки страницы
-                    history.pushState(null, null, `#${sectionId}`);
                 });
             });
 
-            // Функция показа раздела
+            // Показать раздел
             function showSection(sectionId) {
-                // Обновляем навигацию
                 document.querySelectorAll('.nav-link').forEach(el => {
                     el.classList.remove('active');
                 });
                 document.querySelector(`.nav-link[data-section="${sectionId}"]`).classList.add('active');
 
-                // Показываем нужный раздел
                 document.querySelectorAll('.section').forEach(section => {
                     section.classList.remove('active');
                 });
                 document.getElementById(sectionId).classList.add('active');
 
-                // Плавная прокрутка к верху
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
+            // Фильтры
+            const roleFilterBtn = document.getElementById('roleFilterBtn');
+            const classFilterBtn = document.getElementById('classFilterBtn');
+            const roleFilter = document.getElementById('roleFilter');
+            const classFilter = document.getElementById('classFilter');
+            const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+            
+            let activeRoleFilter = 'all';
+            let activeClassFilter = 'all';
+
+            // Показать/скрыть фильтры
+            roleFilterBtn.addEventListener('click', function() {
+                roleFilter.classList.toggle('show');
+                classFilter.classList.remove('show');
+                this.classList.toggle('active');
+                if (classFilterBtn.classList.contains('active')) {
+                    classFilterBtn.classList.remove('active');
+                }
+            });
+            
+            classFilterBtn.addEventListener('click', function() {
+                classFilter.classList.toggle('show');
+                roleFilter.classList.remove('show');
+                this.classList.toggle('active');
+                if (roleFilterBtn.classList.contains('active')) {
+                    roleFilterBtn.classList.remove('active');
+                }
+            });
+            
+            // Выбор фильтра
+            document.querySelectorAll('.filter-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const filterType = this.getAttribute('data-filter');
+                    const value = this.getAttribute('data-value');
+                    
+                    // Удаляем активный класс у всех опций в этой группе
+                    this.parentElement.querySelectorAll('.filter-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    
+                    // Добавляем активный класс к выбранной опции
+                    this.classList.add('active');
+                    
+                    if (filterType === 'role') {
+                        activeRoleFilter = value;
+                        roleFilterBtn.textContent = value === 'all' ? 'Роль' : this.textContent;
+                    } else if (filterType === 'class') {
+                        activeClassFilter = value;
+                        classFilterBtn.textContent = value === 'all' ? 'Класс' : this.textContent;
+                    }
+                    
+                    applyFilters();
+                });
+            });
+            
+            // Сброс фильтров
+            resetFiltersBtn.addEventListener('click', () => {
+                activeRoleFilter = 'all';
+                activeClassFilter = 'all';
+                
+                // Сбрасываем текст кнопок
+                roleFilterBtn.textContent = 'Роль';
+                classFilterBtn.textContent = 'Класс';
+                
+                // Удаляем активные классы у опций
+                document.querySelectorAll('.filter-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                
+                // Закрываем выпадающие меню
+                roleFilter.classList.remove('show');
+                classFilter.classList.remove('show');
+                roleFilterBtn.classList.remove('active');
+                classFilterBtn.classList.remove('active');
+                
+                applyFilters();
+            });
+            
+            // Применить фильтры
+            function applyFilters() {
+                document.querySelectorAll('.guide-card').forEach(card => {
+                    const cardRole = card.getAttribute('data-role');
+                    const cardClass = card.getAttribute('data-class');
+                    
+                    const roleMatch = activeRoleFilter === 'all' || cardRole === activeRoleFilter;
+                    const classMatch = activeClassFilter === 'all' || cardClass === activeClassFilter;
+                    
+                    if (roleMatch && classMatch) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Закрытие фильтров при клике вне их
+            document.addEventListener('click', function(e) {
+                if (!roleFilterBtn.contains(e.target) && !roleFilter.contains(e.target)) {
+                    roleFilter.classList.remove('show');
+                    roleFilterBtn.classList.remove('active');
+                }
+                
+                if (!classFilterBtn.contains(e.target) && !classFilter.contains(e.target)) {
+                    classFilter.classList.remove('show');
+                    classFilterBtn.classList.remove('active');
+                }
+            });
+            
             // Обработка якоря при загрузке
             if(window.location.hash) {
                 const sectionId = window.location.hash.substring(1);
                 if(document.getElementById(sectionId)) {
                     setTimeout(() => {
                         showSection(sectionId);
-                    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-                    document.querySelector(`.nav-link[data-section="${sectionId}"]`).classList.add('active');
-                    document.getElementById(sectionId).classList.add('active');
-                    window.scrollTo(0, 0);
-                    setTimeout(() => window.scrollTo(0, 0), 100);
+                    }, 100);
                 }
             }
-            
-            // Обработка кнопки "Назад"
-            document.querySelector('.back-link')?.addEventListener('click', function(e) {
-                e.preventDefault();
-                showSection('builds');
-                history.pushState(null, null, '#builds');
-            });
         });
     </script>
 </body>
