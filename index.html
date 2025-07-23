@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наследие Вечных | Сайт</title>
+    <link rel="stylesheet" href="style.css">
     </head>
 	
 <body>
-    <!-- Навигация -->
+   <!-- Навигация -->
     <nav>
         <ul>
-            <li><a href="#" class="nav-link active" data-section="home">Главная</a></li>
-            <li><a href="#" class="nav-link" data-section="news">Новости</a></li>
-            <li><a href="#" class="nav-link" data-section="calendar">Календарь</a></li>
-            <li><a href="#" class="nav-link" data-section="builds">Билды</a></li>
-            <li><a href="#" class="nav-link" data-section="screenshots">Творчество</a></li>
-            <li><a href="#" class="nav-link" data-section="contacts">Контакты</a></li>
+            <li><a href="#home" class="nav-link active" data-section="home">Главная</a></li>
+            <li><a href="#news" class="nav-link" data-section="news">Новости</a></li>
+            <li><a href="#calendar" class="nav-link" data-section="calendar">Календарь</a></li>
+            <li><a href="#builds" class="nav-link" data-section="builds">Билды</a></li>
+            <li><a href="#screenshots" class="nav-link" data-section="screenshots">Творчество</a></li>
+            <li><a href="#contacts" class="nav-link" data-section="contacts">Контакты</a></li>
         </ul>
     </nav>
     
@@ -23,19 +24,19 @@
         <!-- Главная -->
         <section id="home" class="section active">
             <h1>Аллоды Онлайн - База знаний</h1>
-            <p>Добро пожаловать на сайт Гильдии Наследие Вечных, сервер Наследие Богов (Владыки Астрала). Нашу коллекция билдов и руководств по Аллоды Онлайн. Здесь вы найдёте сборки билдов для различных классов и стилей игры.</p>
+            <p>Добро пожаловать на сайт Гильдии Наследие Вечных, сервер Наследие Богов (Владыки Астрала). Наша коллекция билдов и руководств по Аллоды Онлайн. Здесь вы найдёте сборки билдов для различных классов и стилей игры.</p>
             <p>Отдельная благодарность игрокам, чей труд внёс значительный вклад в развитие гильдии: ВЕРКИРИЙ, Войслава, ДияМира, ЛозиФолл, Феллхаммер.</p>
             
             <div class="game-description">
                 <h2>Что предлагают Аллоды Онлайн</h2>
                 <p>Это условно бесплатная MMORPG с уникальной вселенной, где магия встречается с технологиями.</p>
                 <ul>
-                    <li><strong>Гибкую систему классов</strong> — в игре присутствую 11 классов</li>
+                    <li><strong>Гибкую систему классов</strong> — в игре присутствуют 11 классов</li>
                     <li><strong>Астральные корабли</strong> — исследуйте астральные острова с друзьями</li>
                     <li><strong>Гильдейские войны</strong> — сражайтесь против других гильдий</li>
                     <li><strong>12 рас</strong> — от благородных Эльфов, дерзких Орков, восставших Зем и до хитрых Гибберлигов</li>
                 </ul>
-                <p>Не смогли найти ответ на свой вопрос? Пишите в телеграмм.</p>
+                <p>Не смогли найти ответ на свой вопрос? Пишите в <a href="t.me/ALLODQ">телеграм</a>.</p>
             </div>
         </section>
         
@@ -49,8 +50,8 @@
             <p>19.07.2025 - Сделано первое оформление раздела "Билды"</p>
             <p>20.07.2025 - Сделана кнопка назад в билдах (якорь кинут на страницу с билдами)</p>
             <p>20.07.2025 - Созданы все 44 страницы с билдами</p>
-	    <p>20.07.2025 - Изменён цвет сайта на:#0d0c0c (темно-серый/черный), минималистичный темный дизайн</p>
-	    <p>20.07.2025 - В билде Вар-ПВЕ, сделаны места для иконок под умения затрагивающие гайд</p>
+            <p>20.07.2025 - Изменён цвет сайта на:#0d0c0c (темно-серый/черный), минималистичный темный дизайн</p>
+            <p>20.07.2025 - В билде Вар-ПВЕ, сделаны места для иконок под умения затрагивающие гайд</p>
         </section>
         
         <!-- Календарь -->
@@ -502,7 +503,6 @@
     </div>
 
     <script>
-        // Универсальный обработчик для навигации и якорей
         document.addEventListener('DOMContentLoaded', function() {
             // Обработчик для навигационных ссылок
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -510,6 +510,9 @@
                     e.preventDefault();
                     const sectionId = this.getAttribute('data-section');
                     showSection(sectionId);
+                    
+                    // Обновляем URL без перезагрузки страницы
+                    history.pushState(null, null, `#${sectionId}`);
                 });
             });
 
@@ -533,15 +536,24 @@
 
             // Обработка якоря при загрузке
             if(window.location.hash) {
-                const sectionId = window.location.hash.substring(1); // Убираем #
+                const sectionId = window.location.hash.substring(1);
                 if(document.getElementById(sectionId)) {
-                    // Задержка для гарантированной загрузки DOM
                     setTimeout(() => {
                         showSection(sectionId);
-                        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
+                    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                    document.querySelector(`.nav-link[data-section="${sectionId}"]`).classList.add('active');
+                    document.getElementById(sectionId).classList.add('active');
+                    window.scrollTo(0, 0);
+                    setTimeout(() => window.scrollTo(0, 0), 100);
                 }
             }
+            
+            // Обработка кнопки "Назад"
+            document.querySelector('.back-link')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection('builds');
+                history.pushState(null, null, '#builds');
+            });
         });
     </script>
 </body>
